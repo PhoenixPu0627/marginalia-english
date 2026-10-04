@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A personal reading and language collection system." />
+  <title>Marginalia — Personal English System</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2319211e'/%3E%3Cpath d='M8 23V8h4l4 8 4-8h4v15h-3V13l-4 8h-2l-4-8v10z' fill='%23f4f0e8'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="brand" data-view="home" aria-label="返回首页">
+        <span class="brand-mark">M</span>
+        <span>Marginalia</span>
+      </button>
+      <nav class="main-nav" aria-label="主导航">
+        <button data-view="reading">Reading</button>
+        <button data-view="bank">Language Bank</button>
+        <button data-view="recycle">Recycle</button>
+      </nav>
+      <button class="icon-button" id="settingsBtn" aria-label="数据与设置" title="数据与设置">
+        <span aria-hidden="true">•••</span>
+      </button>
+    </header>
+
+    <main>
+      <section id="homeView" class="view active">
+        <div class="home-grid">
+          <article class="home-intro">
+            <p class="eyebrow">Your personal English system</p>
+            <h1>Read first.<br><em>Notice what stays.</em></h1>
+            <p class="intro-copy">保留阅读的主动权。这里不替你总结，而是接住那些值得反复回看的词句。</p>
+            <div class="flow" aria-label="学习流程">
+              <span>Read</span><i>→</i><span>Notice</span><i>→</i><span>Collect</span><i>→</i><span>Use</span><i>→</i><span>Recycle</span>
+            </div>
+          </article>
+
+          <article class="desk-card today-card">
+            <div class="card-kicker"><span>Today</span><time id="todayDate"></time></div>
+            <h2>What are you reading?</h2>
+            <p>从一篇真正感兴趣的文章开始。读完，再决定什么值得留下。</p>
+            <button class="text-link" data-view="reading">Open reading desk <span>↗</span></button>
+          </article>
+
+          <article class="desk-card bank-card">
+            <div class="card-kicker"><span>Language Bank</span><span id="bankCount">0 entries</span></div>
+            <div class="metric-row">
+              <div><strong id="activeCount">0</strong><span>Active</span></div>
+              <div><strong id="practiceCount">0</strong><span>Practised</span></div>
+              <div><strong id="noticedCount">0</strong><span>Noticed</span></div>
+            </div>
+            <button class="primary-button" id="quickAddBtn"><span>＋</span> Collect an expression</button>
+          </article>
+
+          <article class="desk-card recycle-card">
+            <div class="card-kicker"><span>Recycle</span><span id="dueCount">0 due</span></div>
+            <blockquote id="homeQuote">“Vocabulary grows when you meet it again.”</blockquote>
+            <button class="text-link" data-view="recycle">Begin a review <span>→</span></button>
+          </article>
+        </div>
+      </section>
+
+      <section id="readingView" class="view page-view">
+        <div class="page-header">
+          <div><p class="eyebrow">Guided deep read · The Economist</p><h1>Can Germany’s recovery outrun the AfD?</h1></div>
+          <span class="lesson-time">Issue: Sep 12, 2026 · 25–35 min</span>
+        </div>
+        <div class="lesson-path" role="tablist" aria-label="精读步骤">
+          <button class="lesson-tab active" data-lesson="read">1 · Read</button><button class="lesson-tab" data-lesson="understand">2 · Understand</button><button class="lesson-tab" data-lesson="language">3 · Language & culture</button><button class="lesson-tab" data-lesson="respond">4 · Your view</button>
+        </div>
+        <div class="lesson-panel active" data-panel="read">
+          <article class="article-sheet">
+            <div class="article-deck"><span>Europe · Economy & politics</span><p>Germany’s tentative recovery is colliding with industrial weakness and political anger.</p></div>
+            <p class="source-note">Learning edition based on a topic selected from the Sep 12 Economist issue in the GitHub library. It preserves the argument and useful language without republishing the full copyrighted article.</p>
+            <p class="article-lead">Germany has spent years waiting for its economy to turn a corner. Growth is beginning to return, but the recovery remains too faint to transform the country’s political mood. Many voters do not experience an improving set of statistics as an improvement in daily life.</p>
+            <p>The problem is most visible in industry. Energy remains expensive, Chinese competition has intensified and carmakers are under pressure to cut costs. Volkswagen has argued that aligning its workforce with “economic reality is essential”. For workers in manufacturing towns, such language sounds less like a plan for renewal than a warning about jobs.</p>
+            <p>That gap between headline recovery and lived experience gives the Alternative for Germany room to grow. The party has prospered by presenting economic disruption, migration and distrust of established institutions as parts of the same story. A modest rise in output may therefore do little to reverse its momentum.</p>
+            <p>The central question is not simply whether Germany can grow again. It is whether growth can arrive quickly enough—and be felt widely enough—to restore confidence before political frustration hardens into lasting realignment.</p>
+            <div class="reading-check"><p>先不要查词。读完后，用一句英文回答：</p><label for="gistAnswer">What is the article’s central tension?</label><textarea id="gistAnswer" rows="3" placeholder="The central tension is that…"></textarea><button class="primary-button" data-next-lesson="understand">Check my understanding</button></div>
+          </article>
+          <aside class="reading-margin"><p class="eyebrow">Before you read</p><h3>你需要知道的背景</h3><p>德国长期依赖制造业、廉价能源与出口。能源冲击、中国制造业竞争以及汽车产业转型，同时削弱了旧增长模式。</p><p><b>AfD</b> 是德国右翼民粹政党。文章真正关心的不是一次选举，而是经济不安全感如何改变政治归属。</p><a href="https://github.com/hehonghui/awesome-english-ebooks/tree/master/01_economist/te_2026.09.12" target="_blank" rel="noreferrer">View source issue on GitHub</a></aside>
+        </div>
+        <div class="lesson-panel" data-panel="understand"><div class="study-grid"><article><p class="eyebrow">Argument map</p><h2>作者是怎样推进观点的？</h2><ol class="argument-map"><li><b>Concession</b><span>经济确实开始复苏。</span></li><li><b>Complication</b><span>但数字改善尚未进入普通人的生活体验。</span></li><li><b>Political consequence</b><span>体感落差让 AfD 得以把多种不满串成一个故事。</span></li><li><b>Thesis</b><span>决定政治走向的不是有没有增长，而是增长是否足够快、足够普遍。</span></li></ol></article><aside class="coach-card"><p class="eyebrow">Reading check</p><h3>A strong answer</h3><p>“Germany may be recovering on paper, but unless ordinary voters feel the benefits soon, economic growth may fail to halt the AfD’s political momentum.”</p><p>注意它没有复述所有细节，而是抓住 <b>on paper vs lived experience</b> 的冲突。</p></aside></div></div>
+        <div class="lesson-panel" data-panel="language"><div class="language-lessons"><article><span>01</span><h3>turn a corner</h3><p><b>开始走出困境，出现转机。</b> 它来自道路转弯的空间隐喻：过了弯，前方局面改变。新闻中常用于 economy, health, crisis。</p><button class="secondary-button collect-lesson" data-expression="turn a corner" data-meaning="开始走出困境；出现转机" data-context="Germany has spent years waiting for its economy to turn a corner.">Add to my vocabulary</button></article><article><span>02</span><h3>lived experience</h3><p><b>亲身经历、切身感受。</b> 与抽象数据、政策叙事相对。它在社会科学和公共讨论中很常见，但使用过度时也可能显得空泛。</p><button class="secondary-button collect-lesson" data-expression="lived experience" data-meaning="亲身经历；与抽象数据相对的切身体验" data-context="Voters do not experience better statistics as an improvement in daily life.">Add to my vocabulary</button></article><article><span>03</span><h3>harden into</h3><p><b>逐渐固化为。</b> harden 原本指物质变硬；用于态度、分歧和政治阵营时，暗示原本可改变的状态正在失去弹性。</p><button class="secondary-button collect-lesson" data-expression="harden into" data-meaning="逐渐固化为某种更难改变的状态" data-context="Political frustration may harden into lasting realignment.">Add to my vocabulary</button></article></div></div>
+        <div class="lesson-panel" data-panel="respond"><div class="response-lab"><p class="eyebrow">From input to output</p><h2>Do better economic figures necessarily weaken populist parties?</h2><p>请用 120–180 词回答。尝试使用 <b>turn a corner</b>、<b>lived experience</b> 或 <b>harden into</b> 中的两个。</p><textarea id="responseText" rows="9" placeholder="I do not think better headline figures necessarily…"></textarea><div class="response-footer"><span id="wordCount">0 words</span><button class="primary-button" id="saveResponse">Save my response</button></div><div id="responseFeedback" class="feedback" hidden><b>Saved.</b> 下一步先检查：你的论点是否区分了经济数据与个人体感？有没有用具体机制连接经济与政治，而不是只表达赞成或反对？</div></div></div>
+        </div>
+      </section>
+
+      <section id="bankView" class="view page-view">
+        <div class="page-header bank-heading">
+          <div><p class="eyebrow">Language Bank</p><h1>Expressions worth keeping.</h1></div>
+          <button class="primary-button" id="addEntryBtn">＋ New entry</button>
+        </div>
+        <div class="toolbar">
+          <label class="search-field"><span>⌕</span><input id="searchInput" type="search" placeholder="Search expression, note or source…" /></label>
+          <div class="filter-group" role="group" aria-label="状态筛选">
+            <button class="filter active" data-status="all">All</button>
+            <button class="filter" data-status="Noticed">Noticed</button>
+            <button class="filter" data-status="Practised">Practised</button>
+            <button class="filter" data-status="Active">Active</button>
+          </div>
+          <select id="categoryFilter" aria-label="类别筛选">
+            <option value="all">All categories</option>
+            <option value="recurring">刊物常用表达</option>
+            <option value="curious">陌生但感兴趣</option>
+            <option value="unexpected">熟词生用</option>
+          </select>
+        </div>
+        <div id="entryList" class="entry-list"></div>
+        <div id="emptyState" class="empty-state" hidden>
+          <span>✦</span><h3>No expressions found</h3><p>换一个筛选条件，或收藏你今天注意到的表达。</p>
+        </div>
+      </section>
+
+      <section id="recycleView" class="view page-view recycle-view">
+        <div class="page-header">
+          <div><p class="eyebrow">Active recall</p><h1>Bring it back to mind.</h1></div>
+          <div class="review-progress"><span id="reviewCounter">1 / 1</span><div><i id="reviewBar"></i></div></div>
+        </div>
+        <div id="reviewEmpty" class="review-empty" hidden><span>✓</span><h2>You’re caught up.</h2><p>收藏更多表达，或稍后再来复习。</p><button class="primary-button" data-view="bank">Browse Language Bank</button></div>
+        <div id="reviewStage" class="review-stage">
+          <div class="mode-switch" role="group"><button class="active" data-mode="meaning">遮住释义</button><button data-mode="expression">遮住原词</button></div>
+          <article class="review-card" id="reviewCard">
+            <div class="review-meta"><span id="reviewSource"></span><span id="reviewCategory"></span></div>
+            <p class="review-context" id="reviewContext"></p>
+            <div class="hidden-answer" id="hiddenAnswer"><span>Tap to reveal</span></div>
+            <div class="revealed-answer" id="revealedAnswer" hidden></div>
+            <button class="reveal-button" id="revealBtn">Reveal answer</button>
+          </article>
+          <div class="review-actions" id="reviewActions" hidden>
+            <button data-grade="again"><b>Again</b><span>还没想起</span></button>
+            <button data-grade="hard"><b>Hard</b><span>有点模糊</span></button>
+            <button data-grade="good"><b>Good</b><span>顺利想起</span></button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="entryDialog" class="modal">
+    <form id="entryForm" method="dialog">
+      <div class="modal-header"><div><p class="eyebrow">Language Bank</p><h2 id="dialogTitle">Collect an expression</h2></div><button type="button" class="close-button" data-close aria-label="关闭">×</button></div>
+      <input type="hidden" id="entryId" />
+      <div class="form-grid">
+        <label class="full"><span>Word or expression *</span><input id="expression" required placeholder="e.g. take a toll" /></label>
+        <label class="full"><span>Original sentence</span><textarea id="context" rows="3" placeholder="Paste the sentence that made you stop…"></textarea></label>
+        <label><span>Publication</span><select id="source"><option>The Economist</option><option>The New Yorker</option><option>The Atlantic</option><option>Wired</option><option>Other</option></select></label>
+        <label><span>Article title</span><input id="article" placeholder="Article or essay title" /></label>
+        <label><span>Page / location</span><input id="location" placeholder="p. 42 or paragraph 6" /></label>
+        <label><span>Category</span><select id="category"><option value="unexpected">简单但不会这样用 / 熟词生用</option><option value="recurring">刊物常用表达</option><option value="curious">陌生但感兴趣</option></select></label>
+        <label class="full"><span>Contextual meaning / 双语释义 *</span><textarea id="meaning" required rows="3" placeholder="Explain what it means here, in your own words…"></textarea></label>
+        <label class="full"><span>Mini note</span><textarea id="note" rows="2" placeholder="What caught your attention? Collocation, tone, grammar…"></textarea></label>
+        <label class="full"><span>My sentence</span><textarea id="example" rows="2" placeholder="Write something you might genuinely say."></textarea></label>
+        <label><span>Learning status</span><select id="status"><option>Noticed</option><option>Practised</option><option>Active</option></select></label>
+      </div>
+      <div class="modal-footer"><button type="button" class="secondary-button" data-close>Cancel</button><button type="submit" class="primary-button">Save to Language Bank</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="detailDialog" class="modal detail-modal"><div id="detailContent"></div></dialog>
+  <dialog id="settingsDialog" class="modal settings-modal">
+    <div class="modal-header"><div><p class="eyebrow">Your data</p><h2>Keep your notes yours.</h2></div><button class="close-button" data-close aria-label="关闭">×</button></div>
+    <p class="settings-copy">V1 将内容保存在这台设备的浏览器中。建议定期导出备份；导入会合并并覆盖同 ID 条目。</p>
+    <div class="data-actions"><button id="exportBtn" class="secondary-button">Export backup</button><label class="secondary-button file-button">Import backup<input id="importInput" type="file" accept="application/json" /></label></div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
